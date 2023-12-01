@@ -19,13 +19,26 @@
     <input type = "checkbox" v-model="chData" true-value = "여" false-value = "부">
     <p>{{ chData }}</p>
     <div>
-        <input type = "checkbox" value = "서울" v-model = "city">서울
+        <input type = "checkbox" value = "서울" v-model = "city">서울 <!--동적으로 값주고싶으면 v-bind : value = "서울"-->
         <input type = "checkbox" value = "대구" v-model = "city">대구
         <p> {{ city }} </p>
     </div>
-  </div>
-</template>
+    <div>
+      <input type = "radio" value="독서" v-model = "hobby">독서
+      <input type = "radio" value="영화" v-model = "hobby">영화
+      <input type = "radio" value="운동" v-model = "hobby">운동
+      <p>{{ hobby }}</p>
+       </div>
+      <hr>
+      <img v-bind:style="styleData" v-bind:src="imgUrl"> <!--이미지를 선택하는것마다 다르게출력하려면 v-bind"-->
+      <img v-bind:style="[backSetting, addStyle]" v-bind:src="imgUrl"> <!--이렇게쓸수도있지만권장X-->
+    <div calss="container" 
+            v-bind:class="{'active' : isActive, 'text-red' : hasError}">Class Binding First</div><!--선택 여부에 따라 달라져야하는건 bind를 쓴다? isActive : boolean타입(t or f)-->
+            <div class="container" v-bind:class = "myClass">Class Binding Second</div>
+    </div>
 
+
+</template>
 <script>
 export default {
 data(){
@@ -37,12 +50,39 @@ data(){
       selectModel : 'winter', //default값을 설정할수도 있다..
       textModel : 'ㅋㅋㅇㅅㅇ',
       chData : '',
-      city : ''
+      city : [], //체크박스 여러개 쓸때 초기값 배열로,
+      hobby : '',
+      imgUrl : 'https://kr.vuejs.org/images/logo.png',
+      styleData : {
+        backgroundColor : 'skyblue', width : '200px'
+      },                
+      backSetting : 'background-color:black; width : 200px;',
+      addStyle : 'height : 200px;',
+      isActive : false,
+     // hasError : !this.isActive
+     myClass : 'active'
+    }
+  },
+  computed : { //...단순 초기값을 주는게아니라 계속 연결성을 가지고 동작하고싶으면 computed속성..
+    hasError(){
+      return !this.isActive;
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+  .container{
+    width : 100%;
+    height : 200px;
+  }
+  .active{
+    background-color: aquamarine;
+    font-weight: bold;
 
+  }
+  .text-red{
+    color : red;
+    
+  }
 </style>
