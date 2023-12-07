@@ -46,7 +46,7 @@ AND e.emp_no = ?`,
 
 let dept = {
     list : `
-    SELECT dept_no FROM departments
+    SELECT dept_no,dept_name from departments order by dept_no
     `
 }
 let sal = {

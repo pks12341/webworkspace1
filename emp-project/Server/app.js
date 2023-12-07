@@ -82,10 +82,20 @@ app.put('/emps/:emp_no',async (req,res)=>{
 
 //삭제
 app.delete('/emps/:emp_no',async (req,res)=>{ //실행한쿼리문은 update지만 기능적으로 delete다
+    let today = new Date();
+    let formatt = 'YYYY-MM-DD'
+    let date = formatt.replace('YYYY',today.getFullYear()).replace('MM',(('0' + (today.getMonth +1)).slice(-2))).replace('DD',('0' + today.getDate()).slice(-2));
+
+    req.body.param = { to_date : '' };
+    req.body.param.to_date = date;
     let data = [req.body.param.to_date, req.params.emp_no];
     let result = await mysql.query('deptEmp','update',data);
     res.send(result);
 });
+app.get('/depts',async (req,res)=>{ //실행한쿼리문은 update지만 기능적으로 delete다
+    let result = await mysql.query('dept','list');
+    res.send(result);
+})
 
 //수정과삭제 배열을 보내는 이유=> 쿼리문에서 ? 개수 보면 하나가 아니기때문에 배열로(물음표 2개이상은 무조건배열)
 //오브젝트인지 아닌지는 컬럼이 명시되면 객체x 명시되지않으면 객체 ..컬럼이 있냐 없냐에 따라 다름
