@@ -13,14 +13,14 @@ module.exports = {
     boardUpdate: `UPDATE t_BOARD_BOARD 
                          SET  ? WHERE NO = ?`,
 
-    boardInfo: `SELECT B.NO,
+    boardInfo: `SELECT 
+              B.NO,
 	          B.TITLE,
               B.WRITER,
               B.CREATED_DATE,
-              B.CONTENT,
-               C.NO
+              B.CONTENT
             from T_BOARD_BOARD AS B
             LEFT join T_COMMENT_BOARD AS C ON B.NO = C.BNO
-            where B.no = ?`
+            where B.NO = ?`
 
 }

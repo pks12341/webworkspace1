@@ -44,5 +44,6 @@ app.delete('/api/boards/:board_no',async (req,res)=>{
 app.get('/api/boards/:board_no', async (req,res)=>{
     let data = req.params.board_no;
     let list = await mysql.query('boardInfo',data);
-    res.send(list[0]);
+    console.log(list);
+    res.send(list[0]);//
 });
