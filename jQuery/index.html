@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .blue{
+            color : seagreen;
+        }
+
+        .red{
+            color:brown;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>where do you want to go?</h1>
+        <h2>Travel Destination</h2>
+        <p>Plan your next adventure.</p>
+        <ul id="destinations">
+            <li>Rome</li>
+            <li>Paris</li>
+            <li class="blue">Rio</li>
+
+        </ul>
+    </div>
+    <script>
+      // selector : 탐색
+      // # : id속성
+      console.log($('#destinations'));
+      // . : class 속성
+      console.log($('.blue'));
+      // tagName 
+      console.log($('h1'));
+      // [attribute] : 일반 속성
+      console.log($('[name]'));
+      // 관계를 기반으로 -> ul이 가진 모든 li검색 | 공백은 하위 ul > li 는 자식 요소중 li
+      console.log($('ul li'));
+      /*
+        innerHtml : html()
+        textContent : text()
+        class : addClass(), removeClass(), hasClass(), toggleClass() : 온오프(이미 가지고있으면 삭제, 없으면 추가)
+        value : val()
+        style : css()
+        기타 : prop(), attr() prop안되면 attr, attr안되면 prop쓰기
+      */
+
+      let result = $('ul').html();
+      console.log(result);
+      result = $('ul').text();
+      console.log(result);
+      $('h1').text('Hello, jQuery!');
+      $('h2').css('background-color','green');
+      result = $('h2').css('color');
+      console.log(result);
+      $('p').prop('name','dumi');
+
+    </script>
+</body>
+</html>
