@@ -81,7 +81,7 @@
       headList = $('#list thead th'); //이방식을 많이쓴다. 위에는 너무 범위가 넓다 thead > th 이면 데이터를 못가지고온다    
       let headAry = [];
       headList.each((idx,tag)=>{
-        //이 안에서는 자바스크립트
+        //이 안에서는 자바스크립트(jquery메소드 사용불가)
         console.log(tag.textContent);
         //jQuery 객체로 다시 반환 
         console.log('asdasd',$(tag).text());

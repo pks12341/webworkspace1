@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id = "app"></div>
+    <script>
+        /*
+        $.ajax('',{
+          //method, default : get
+          type : '',  
+          //서버로 전송할 데이터의 content-type
+          //default : application/x-www-form-urlencoded
+          //JSON 으로 보낼때 : application/json
+          contentType : '',
+          //서버로 전송할 데이터 : object => queryString
+          data : {},  
+          // 서버로 통신을 하기 직전 추가작업 필요한 경우
+          beforeSend : function(xhr){  
+            
+          }
+        }) 
+        
+        .done(result => console.log(result)) //통신이 성공한 경우
+        .done(result => console.log(result))
+        .fail(err => console.log(err));// 통신이 실패한 경우
+
+        */
+       //전체조회
+       $.ajax('http://localhost:8080/app/emps')  //fetch와 비슷
+       .done(result =>{  //then과 비슷
+        console.log('AllList',result);
+       })
+       .fail(err=>console.log(err)); //catch와 비슷
+
+       //단건조회
+       $.ajax('http://localhost:8080/app/emps/100')  
+       .done(result =>{  
+        console.log('info',result);
+       })
+       .fail(err=>console.log(err)); 
+       
+       //등록
+       let info = {
+        lastName : 'Ann233',
+        email : 'ansdn@naver.com', //Unique제약조건
+        hireDate : '2024-01-18',// yyyy-MM-dd
+        jobId : 'IT_PROG', //Foreign key 제약
+        salary : 1000,
+       }
+
+       $.ajax('http://localhost:8080/app/emps',{
+        type : 'post',
+        contentType : 'application/json',//┐한몸
+        data : JSON.stringify(info)      //┘
+       })
+       .done(result =>{
+        console.log('Insert',result)
+       })
+       .fail(err => console.log(err));
+</script>
+    
+    
+</body>
+</html>
